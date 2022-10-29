@@ -1,0 +1,8 @@
+name = "portainer-templates"
+main = "src/index.ts"
+compatibility_date = "2022-10-29"
+usage_model = "bundled"
+env = { }
+
+[triggers]
+crons = [ ]
