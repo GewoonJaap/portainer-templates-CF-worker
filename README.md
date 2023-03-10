@@ -7,13 +7,13 @@ Cloudflare Worker script that merges different Portainer templates into one temp
 ## Usage
 ![afbeelding](https://user-images.githubusercontent.com/33700526/224354146-f3d2e584-9604-4f2a-9ef5-2ec8007bc6fd.png)
 
-- Login to Portainer
-- Go to Settings -> Application settings -> App Templates
-- Set `https://portainer-templates.mrproper.dev/template.json` as template URL
-- Click `Save application settings`
+1. Login to Portainer
+2. Go to Settings -> Application settings -> App Templates
+3. Set `https://portainer-templates.mrproper.dev/template.json` as template URL
+4. Click `Save application settings`
 
 ## Development
-- `wrangler login`
-- Create a Cloudflare worker with name: `portainer-templates`
+- `wrangler login` to login to Cloudflare and authorize wrangler
+- Create a Cloudflare Worker with name: `portainer-templates`
 - `wrangler dev` for local testing
-- `wrangler publish` to publish to Cloudflare
+- `wrangler publish` to publish the worker to Cloudflare
