@@ -1,6 +1,15 @@
-# portainer-templates-CF-worker
+# Portainer Templates | Cloudflare Worker
  
-Cloudflare Worker script that merges a different Portainer templates into one template .
+Cloudflare Worker script that merges different Portainer templates into one template file.
 
 ## Usage
-Add https://portainer-templates.mrproper.dev/ to Portainer templates.
+- Login to Portainer
+- Go to Settings -> Application settings -> App Templates
+- Set `https://portainer-templates.mrproper.dev/` as template URL
+- Click `Save application settings`
+
+## Development
+- `wrangler login`
+- Create a Cloudflare worker with name: `portainer-templates`
+- `wrangler dev` for local testing
+- `wrangler publish` to publish to Cloudflare

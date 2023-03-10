@@ -11,7 +11,8 @@ let cachedResponse = {
 
 async function handleRequest(request: any) {
 
-  const extraSources = ['https://raw.githubusercontent.com/mycroftwilde/portainer_templates/master/Template/template.json',
+  const extraSources = [
+    'https://raw.githubusercontent.com/mycroftwilde/portainer_templates/master/Template/template.json',
     'https://raw.githubusercontent.com/technorabilia/portainer-templates/main/lsio/templates/templates-2.0.json',
     'https://raw.githubusercontent.com/mikestraney/portainer-templates/master/templates.json',
     'https://raw.githubusercontent.com/donPabloNow/selfhosted-saas/master/Template/portainer-v2.json',
@@ -35,8 +36,7 @@ async function handleRequest(request: any) {
     });
   }
 
-  //make request to extraSources, parse json and add templates array to baseJson
-  for (const source of extraSources) {
+  const promises = extraSources.map(async (source) => {
     const response = await fetch(source);
     const json = await response.json() as any;
     json.templates.forEach((template: any) => {
@@ -45,13 +45,15 @@ async function handleRequest(request: any) {
         baseJson.templates.push(template);
       }
     });
-  }
+  });
+  await Promise.all(promises);
+
 
   cachedResponse = {
     cacheTime: Date.now(),
     response: baseJson
   };
-  console.log('Serving uncache response');
+  console.log('Serving uncached response');
   return new Response(JSON.stringify(baseJson), {
     headers: {
       'content-type': 'application/json;charset=UTF-8',
